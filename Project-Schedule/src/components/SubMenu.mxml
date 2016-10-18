@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 creationComplete="group1_creationCompleteHandler(event)">
+
+	
+	<fx:Metadata>
+		[Event(name="clickBt", type="events.StateEvent")]
+	</fx:Metadata>
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			import events.StateEvent;
+			
+			import skins.ButtonWithStatesSkin;
+			
+			protected function btLich_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+
+				if(!btLichDangKy.visible){
+					btLichDangKy.visible = true;
+					btLichDangKy.includeInLayout = true;
+					btLichXinPhep.visible = true;
+					btLichXinPhep.includeInLayout = true;
+					btTraCuu.visible = true;
+					btTraCuu.includeInLayout = true;
+				}
+				else
+					if(btLichDangKy.visible){
+						btLichDangKy.visible = false;
+						btLichDangKy.includeInLayout = false;
+						btLichXinPhep.visible = false;
+						btLichXinPhep.includeInLayout = false;
+						btTraCuu.visible = false;
+						btTraCuu.includeInLayout = false;
+					}
+				
+				var btBanTin:StateEvent = new StateEvent("clickBt","btLich");
+				this.dispatchEvent(btBanTin);
+			}
+			
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				btLich.visible = true;
+				btLichDangKy.visible=false;
+				btLichDangKy.includeInLayout = false;
+				btLichXinPhep.visible=false;
+				btLichXinPhep.includeInLayout = false;
+				btTraCuu.visible = false;
+				btTraCuu.includeInLayout = false;
+			}
+			
+			protected function btLichDangKy_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				var btBanTin:StateEvent = new StateEvent("clickBt","btLichDangKy");
+				this.dispatchEvent(btBanTin);
+			}
+			
+			protected function btLichXinPhep_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				var btBanTin:StateEvent = new StateEvent("clickBt","btLichXinPhep");
+				this.dispatchEvent(btBanTin);
+			}
+			
+			protected function btTraCuu_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				var btBanTin:StateEvent = new StateEvent("clickBt","btTraCuu");
+				this.dispatchEvent(btBanTin);
+			}
+			
+		]]>
+	</fx:Script>
+	<s:layout>
+		<s:VerticalLayout />
+	</s:layout>
+	<s:Button label="Lịch" height="40" 
+			  width="200" 
+			  skinClass="skins.ButtonWithStatesSkin"
+			  id="btLich" click="btLich_clickHandler(event)"/>
+	<s:Group>
+		<s:layout>
+			<s:VerticalLayout paddingLeft="50" />
+		</s:layout>
+		<s:Button label="Đăng ký" height="40" 
+				  width="150" x="50"
+				  skinClass="skins.ButtonWithStatesSkin" 			 
+				  id="btLichDangKy" right="20" 
+				  click="btLichDangKy_clickHandler(event)"/>
+		<s:Button label="Xin Phép" height="40" 
+				  width="150" 
+				  skinClass="skins.ButtonWithStatesSkin"			  
+				  id="btLichXinPhep" right="20"
+				  click="btLichXinPhep_clickHandler(event)"/>
+		<s:Button label="Tra cứu" height="40" 
+				  width="150" 
+				  skinClass="skins.ButtonWithStatesSkin"			  
+				  id="btTraCuu" right="20"
+				  click="btTraCuu_clickHandler(event)"/>
+	</s:Group>
+	
+</s:Group>

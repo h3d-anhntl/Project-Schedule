@@ -1,0 +1,43 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+@namespace cx "components.*";
+
+cx|AppHeader s|Label{
+	fontWeight: bold;
+	color: #FFFFFF;
+}
+cx|NavButton s|Button{
+	verticalAlign: middle;
+}
+cx|NavButton s|Button:down{
+	backgroundColor: #E8E8E8;
+}
+cx|NavButton s|Button:up{
+	backgroundColor: #121212;
+}
+
+.blackRect {
+	fillColor: #000000;
+	radiusX: 0;
+	radiusY: 0;
+}
+.maunen{
+	fillColor:#dddddd;
+}
+/*cx|BanTinContent{
+	fontSize: 16px;
+}*/
+
+cx|LichDangKy s|BorderContainer{
+	borderWeight: 1px;
+	backgroundColor :#dddddd;
+}
+cx|TraCuuLichCaNhan s|BorderContainer{
+	borderWeight: 1px;
+	backgroundColor :#dddddd;
+}
+cx|LichTongQuat s|BorderContainer{
+	borderWeight: 1px;
+	backgroundColor :#dddddd;
+}

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 creationComplete="group1_creationCompleteHandler(event)">
+	
+	<s:layout>
+		<s:VerticalLayout padding="20" />
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.events.FlexEvent;
+			
+			import spark.skins.spark.DefaultItemRenderer;
+			
+			import models.Employee;
+			
+			import utils.SampleDataUtil;
+			[Bindable]
+			public var data:ArrayCollection;
+			
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				var dataEmploy:SampleDataUtil = new SampleDataUtil;
+				data = dataEmploy.getEmployees();
+				for(var i:int = 0; i < (data.length-1) ;i++){
+					monData.dataProvider.addItem(Employee(data.getItemAt(i)).name);
+				}
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:HGroup verticalAlign="middle">
+		<s:Label text="Ngày: "/>
+		<s:Form>
+			<s:FormItem>
+				<mx:DateField width="200" text="{chonNgay.selectedDate.toDateString()}" id="chonNgay" />
+			</s:FormItem>
+		</s:Form>
+		<s:Button label="Tìm" />
+	</s:HGroup>
+	
+	<s:HGroup paddingBottom="20">
+		<s:Label text="Số người đi:  "  paddingRight="50"/>
+		<s:Label text="Số người xin nghỉ:  "/>
+	</s:HGroup>
+	<!--<s:Group >
+		<s:Label text="Sáng: " />
+		<s:VGroup paddingLeft="100">
+			<s:Label text="Chung" />
+			<s:Label text="Thành" />
+			<s:Label text="Đại" />
+			<s:Label text="Ngọc" />
+		</s:VGroup>
+	</s:Group>-->
+	<s:Group >
+		<s:Label text="Sáng: " />
+		<s:DataGroup id="monData"
+					 itemRenderer="spark.skins.spark.DefaultItemRenderer" 
+					 width="100%"> 
+			<s:layout>
+				<s:VerticalLayout paddingLeft="100" gap="0"/>
+			</s:layout> 
+			<s:dataProvider >
+				<s:ArrayCollection>
+				</s:ArrayCollection>
+			</s:dataProvider>
+		</s:DataGroup>
+	</s:Group>
+	
+	<s:Group >
+		<s:Label text="Chiều:" />
+		<s:VGroup paddingLeft="100">
+			<s:Label text="Chung" />
+			<s:Label text="Thành" />
+			<s:Label text="Đại" />
+			<s:Label text="Ngọc" />
+		</s:VGroup>
+	</s:Group>
+	
+	<s:Group>
+		<s:Label text="Nghỉ:" />
+		<s:VGroup paddingLeft="100">
+			<s:Label text="Chung" />
+			<s:Label text="Thành" />
+			<s:Label text="Đại" />
+			<s:Label text="Ngọc" />
+		</s:VGroup>
+	</s:Group>
+	
+	
+	<s:Label text="Sự kiện: Liên hoan 20/10" 
+			 paddingTop="20"
+			 color="red"/>
+</s:Group>

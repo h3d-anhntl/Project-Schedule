@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:BorderContainer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				   xmlns:s="library://ns.adobe.com/flex/spark" 
+				   xmlns:mx="library://ns.adobe.com/flex/mx"
+				   borderWeight="1"
+				   width="100%">
+	
+	
+	<s:layout>
+		<s:VerticalLayout/>
+	</s:layout>
+	
+	<fx:Script>
+		<![CDATA[
+			/*[Bindable]
+			public var data:ArrayList;
+			private function addDGChild():void {
+				var newChild:String = "new child";
+				myDG.dataProvider.addItem("Nhung");
+				myDG.dataProvider.addItem("Thùy");
+				
+			}
+			
+			private function removeDGChild():void {
+				myDG.dataProvider.removeItemAt(3);
+				
+				addDG.enabled = true;
+				removeDG.enabled = false;
+			}*/
+		]]>
+	</fx:Script>
+	
+	<s:DataGroup id="myDG" 
+				 itemRenderer="spark.skins.spark.DefaultItemRenderer" width="100%"> 
+		<s:layout>
+			<s:VerticalLayout horizontalAlign="center"/>
+		</s:layout> 
+		<mx:ArrayList>
+			<fx:String>Chung </fx:String>
+			<fx:String>Ngọc </fx:String>
+			<fx:String>Đạt </fx:String>
+		</mx:ArrayList>
+	</s:DataGroup>
+</s:BorderContainer>
