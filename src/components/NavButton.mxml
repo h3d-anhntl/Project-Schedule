@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:components="components.*"
+		 >
+	
+	<fx:Metadata>
+		[Event(name="clickBt", type="events.StateEvent")]
+	</fx:Metadata>
+	
+	<fx:Script>
+		<![CDATA[
+			import spark.components.Alert;
+			
+			import events.StateEvent;
+			private function myEventHandler(event:Event):void {
+				Alert.show(event.toString());
+			}
+			
+			protected function btBanTin_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				var btBanTin:StateEvent = new StateEvent("clickBt","btBanTin");
+				this.dispatchEvent(btBanTin);
+			}
+			
+			protected function btSuKien_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				var btBanTin:StateEvent = new StateEvent("clickBt","btSuKien");
+				this.dispatchEvent(btBanTin);
+			}
+			
+			protected function submenu1_clickBtHandler(event:StateEvent):void
+			{
+				// TODO Auto-generated method stub
+				//Alert.show(event.idBt);
+			}
+			
+		]]>
+	</fx:Script>
+	<s:layout>
+		<s:VerticalLayout paddingTop="20"/>
+	</s:layout>	
+	
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<s:Button label="Bản tin" height="40"
+			  width="200" 
+			  skinClass="skins.ButtonWithStatesSkin"
+			  id="btBanTin"
+			  click="btBanTin_clickHandler(event)"/>
+	<components:SubMenu clickBt="submenu1_clickBtHandler(event)" />
+	<s:Button label="Sự kiện" height="40" 
+			  width="200" 
+			  skinClass="skins.ButtonWithStatesSkin"
+			  id="btSuKien"
+			  click="btSuKien_clickHandler(event)"/>
+</s:Group>

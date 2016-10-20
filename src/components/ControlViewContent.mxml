@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx">
+	
+	<s:states>
+		<s:State name="btinContent"/>
+		<s:State name="nav"/>
+		<s:State name="traCuu"/>
+		<s:State name="lichDK"/>
+		<s:State name="lichTQ"/>
+	</s:states>
+	
+	
+	
+	<s:Group width="15%" height="500">
+		<core:SolidColorRect width="100%" height="100%" styleName="maunen" />
+		<components:NavButton />
+	</s:Group>
+	
+	<s:Group width="85%" height="500">
+		<core:SolidColorRect width="100%" height="100%" styleName="maunen" />
+		<components:BanTinContent />
+	</s:Group>
+	<s:Group width="85%" height="500">
+		<core:SolidColorRect width="100%" height="100%" styleName="maunen" />
+		<components:LichDangKy />
+	</s:Group>
+	<s:Group width="85%" height="500">
+		<core:SolidColorRect width="100%" height="100%" styleName="maunen" />
+		<components:TraCuuLichCaNhan />
+	</s:Group>
+	<s:Group width="85%" height="500">
+		<core:SolidColorRect width="100%" height="100%" styleName="maunen" />
+		<components:LichTongQuat />
+	</s:Group>
+</s:Group>

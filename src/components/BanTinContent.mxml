@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 creationComplete="group1_creationCompleteHandler(event)">
+	
+	<s:layout>
+		<s:VerticalLayout padding="20" />
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.events.CalendarLayoutChangeEvent;
+			import mx.events.FlexEvent;
+			
+			import spark.components.Alert;
+			
+			import models.Calendar;
+			
+			import utils.SampleDataUtil;
+			
+			[Bindable]
+			public var daySearch:String = "";
+			[Bindable]
+			public var dataEmploy:SampleDataUtil = new SampleDataUtil;
+			[Bindable]
+			public var dataEmployeeeMor:ArrayCollection;
+			
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				monData.dataProvider = dataEmploy.getEmployees();				
+				aftData.dataProvider = dataEmploy.getEmployees();
+				unyokeData.dataProvider = dataEmploy.getEmployees();
+			}
+			
+			protected function search_clickHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				dataEmployeeeMor = new  ArrayCollection;
+				/*var dataEmployeeDay:ArrayCollection = dataEmploy.searchDay();
+				if(daySearch == "1"){
+					for(var i:int=0; i< (dataEmployeeDay.length-1); i++){
+						var calenderByEmployee:Calendar = new  Calendar;
+						calenderByEmployee = Calendar(dataEmployeeDay.getItemAt(i));
+						for(var j:int = 0 ; j < calenderByEmployee.schedule.length -1; i++){
+							if(calenderByEmployee.schedule.getItemAt(j) == "1"||
+								calenderByEmployee.schedule.getItemAt(j) == "0"){
+								dataEmployeeeMor.addItem(dataEmploy.getEmployee(calenderByEmployee.employeeId));
+								break;
+							}
+						}
+					}
+				}*/
+				dataEmployeeeMor = dataEmploy.getEmployeebyDay(String(daySearch))
+				monData.dataProvider = dataEmployeeeMor;
+			}
+			
+			protected function chonNgay_changeHandler(event:CalendarLayoutChangeEvent):void
+			{
+				// TODO Auto-generated method stub
+				if (event.currentTarget.selectedDate == null) {
+					return ;
+				}
+				else{
+					daySearch = String(event.currentTarget.selectedDate.getDay());
+				}
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:HGroup verticalAlign="middle">
+		<s:Label text="Ngày: "/>
+		<s:Form>
+			<s:FormItem>
+				<mx:DateField width="200" 
+							  change="chonNgay_changeHandler(event)"
+							  text="{chonNgay.selectedDate.toDateString()}" 
+							  id="chonNgay" />
+			</s:FormItem>
+		</s:Form>
+		<s:Button label="Tìm"
+				  id="search"
+				  click="search_clickHandler(event)"/>
+	</s:HGroup>
+	<s:VGroup >
+		<s:Label text="Số người đi:  "  paddingRight="50" width="200"/>
+		<s:HGroup width="600" padding="20">
+			<s:HGroup width="50%">
+				<s:Label text="Sáng: " height="100%" paddingLeft="50" />
+				<s:List id="monData"
+						itemRenderer="components.ListNameEmployeeByDay" 
+						width="200"> 
+					<s:layout>
+						<s:VerticalLayout gap="0" horizontalAlign="center"/>
+					</s:layout> 
+				</s:List>
+			</s:HGroup>
+			<s:HGroup width="50%">
+				<s:Label text="Chiều: " height="100%" paddingLeft="50" />
+				<s:List id="aftData"
+						itemRenderer="components.ListNameEmployeeByDay" 
+						width="200"> 
+					<s:layout>
+						<s:VerticalLayout gap="0" horizontalAlign="center"/>
+					</s:layout> 
+				</s:List>
+			</s:HGroup>
+		</s:HGroup>
+	</s:VGroup>
+	
+	<s:VGroup>
+		<s:Label text="Số người xin nghỉ:  "/>
+		<s:HGroup>
+			<s:Label text="Gồm: " height="100%" paddingLeft="50" />
+			<s:List id="unyokeData"
+					itemRenderer="components.ListNameEmployeeByDay" 
+					width="200"> 
+				<s:layout>
+					<s:VerticalLayout gap="0" horizontalAlign="center"/>
+				</s:layout> 
+			</s:List>
+		</s:HGroup>
+	</s:VGroup>
+	
+	
+	<s:Label text="Sự kiện: Liên hoan 20/10" 
+			 paddingTop="20"
+			 color="red"/>
+</s:Group>
