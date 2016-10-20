@@ -25,9 +25,9 @@
 			protected function group1_creationCompleteHandler(event:FlexEvent):void
 			{
 				// TODO Auto-generated method stub
-				monData.dataProvider = dataEmploy.getEmployees();				
+				/*monData.dataProvider = dataEmploy.getEmployees();				
 				aftData.dataProvider = dataEmploy.getEmployees();
-				unyokeData.dataProvider = dataEmploy.getEmployees();
+				unyokeData.dataProvider = dataEmploy.getEmployees();*/
 			}
 			
 			protected function search_clickHandler(event:MouseEvent):void
@@ -48,19 +48,15 @@
 						}
 					}
 				}*/
-				dataEmployeeeMor = dataEmploy.getEmployeebyDay(String(daySearch))
+				/*dataEmployeeeMor = dataEmploy.getEmployeebyDay(String(daySearch))*/
 				monData.dataProvider = dataEmployeeeMor;
 			}
 			
 			protected function chonNgay_changeHandler(event:CalendarLayoutChangeEvent):void
 			{
 				// TODO Auto-generated method stub
-				if (event.currentTarget.selectedDate == null) {
-					return ;
-				}
-				else{
-					daySearch = String(event.currentTarget.selectedDate.getDay());
-				}
+				if (DateField(event.currentTarget).selectedDate)
+					daySearch = String(DateField(event.currentTarget).selectedDate.getDay());
 			}
 			
 		]]>
@@ -120,7 +116,7 @@
 			</s:DataGroup>
 		</s:HGroup>
 	</s:VGroup>-->
-	
+
 	<s:HGroup gap="0" minHeight="280">
 		<s:VGroup  width="400" gap="0" height="100%">
 			<components:ABorderContainer lbThu="Đi"  height="30"/>
@@ -129,44 +125,44 @@
 					<components:ABorderContainer lbThu="Sáng" height="30"/>
 					<s:HGroup width="100%" height="100%">
 						<s:List id="monData"
-									 itemRenderer="components.ListNameEmployeeByDay" 
-									 width="200" height="100%"> 
+									 itemRenderer="components.ListNameEmployeeByDay"
+									 width="200" height="100%">
 							<s:layout>
 								<s:VerticalLayout gap="0" horizontalAlign="center"/>
-							</s:layout> 
+							</s:layout>
 						</s:List>
 					</s:HGroup>
 				</s:VGroup>
-				
+
 				<s:VGroup width="200" gap="0" height="100%">
 					<components:ABorderContainer lbThu="Chiều" height="30"/>
 					<s:HGroup width="100%" height="100%">
 						<s:List id="aftData" height="100%"
-									 itemRenderer="components.ListNameEmployeeByDay" 
-									 width="200" > 
+									 itemRenderer="components.ListNameEmployeeByDay"
+									 width="200" >
 							<s:layout>
 								<s:VerticalLayout gap="0" horizontalAlign="center"/>
-							</s:layout> 
+							</s:layout>
 						</s:List>
 					</s:HGroup>
 				</s:VGroup>
 			</s:HGroup>
 		</s:VGroup>
-			
+
 		<s:VGroup width="300" gap="0" height="100%">
 			<components:ABorderContainer lbThu="Nghỉ"  height="60"/>
 			<s:HGroup width="100%" gap="0"
 					  height="100%">
 				<s:List id="unyokeData"
 							 itemRenderer="components.ListNameEmployeeByDay"
-							 width="100%" height="100%"> 
+							 width="100%" height="100%">
 					<s:layout>
 						<s:VerticalLayout gap="0" horizontalAlign="center"/>
-					</s:layout> 
+					</s:layout>
 				</s:List>
 			</s:HGroup>
 		</s:VGroup>
 	</s:HGroup>
-	<s:Label text="Sự kiện: Liên hoan 20/10" 
+	<s:Label text="Sự kiện: Liên hoan 20/10"
 			 color="red"/>
 </s:Group>

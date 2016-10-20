@@ -3,21 +3,24 @@
 		 xmlns:s="library://ns.adobe.com/flex/spark" 
 		 xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:components="components.*"
 		 width="100%"
-		 creationComplete="group1_creationCompleteHandler(event)">
+		 creationComplete="group1_creationCompleteHandler(event)" xmlns:ns="http://f-project.net/xmlns/fprj/2013">
 	
 	
 	<fx:Script>
 		<![CDATA[
 			import mx.events.FlexEvent;
 			
-			import utils.SampleDataUtil;
+			import service.EmployeeService;
 			
 			protected function group1_creationCompleteHandler(event:FlexEvent):void
 			{
 				// TODO Auto-generated method stub
-				var dataEmployee:SampleDataUtil = new SampleDataUtil;
+				/*var dataEmployee:SampleDataUtil = new SampleDataUtil;
 				mon.dataProvider = dataEmployee.getEmployeeCalendarMon();
-				aft.dataProvider = dataEmployee.getEmployeeCalendarAft();
+				aft.dataProvider = dataEmployee.getEmployeeCalendarAft();*/
+				var employeeService:EmployeeService = new EmployeeService();
+				mon.dataProvider = employeeService.employeeCalendarMon;
+				aft.dataProvider = employeeService.employeeCalendarAft;
 			}
 			
 		]]>
@@ -44,7 +47,6 @@
 			</s:FormItem>
 		</s:Form>
 	</s:HGroup>
-	
 	<s:VGroup gap="0" paddingLeft="30"
 			  width="100%">	 
 		<!--Define Row 1.	-->
