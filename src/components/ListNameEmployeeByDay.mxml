@@ -5,6 +5,8 @@
 				autoDrawBackground="true">
 	
 	
-	<s:Label text="{data.name}"/>
+	<s:Label text="{data.name}"
+			 paddingBottom="5" paddingTop="5"
+			 paddingLeft="5" paddingRight="5"/>
 	
 </s:ItemRenderer>

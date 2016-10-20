@@ -2,7 +2,7 @@
 <s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		 xmlns:s="library://ns.adobe.com/flex/spark" 
 		 xmlns:mx="library://ns.adobe.com/flex/mx"
-		 creationComplete="group1_creationCompleteHandler(event)">
+		 creationComplete="group1_creationCompleteHandler(event)" xmlns:components="components.*">
 	
 	<s:layout>
 		<s:VerticalLayout padding="20" />
@@ -12,10 +12,6 @@
 			import mx.collections.ArrayCollection;
 			import mx.events.CalendarLayoutChangeEvent;
 			import mx.events.FlexEvent;
-			
-			import spark.components.Alert;
-			
-			import models.Calendar;
 			
 			import utils.SampleDataUtil;
 			
@@ -70,7 +66,8 @@
 		]]>
 	</fx:Script>
 	
-	<s:HGroup verticalAlign="middle">
+	<s:HGroup verticalAlign="middle"
+			  paddingBottom="50">
 		<s:Label text="Ngày: "/>
 		<s:Form>
 			<s:FormItem>
@@ -84,28 +81,28 @@
 				  id="search"
 				  click="search_clickHandler(event)"/>
 	</s:HGroup>
-	<s:VGroup >
+	<!--<s:VGroup >
 		<s:Label text="Số người đi:  "  paddingRight="50" width="200"/>
 		<s:HGroup width="600" padding="20">
 			<s:HGroup width="50%">
 				<s:Label text="Sáng: " height="100%" paddingLeft="50" />
-				<s:List id="monData"
+				<s:DataGroup id="monData"
 						itemRenderer="components.ListNameEmployeeByDay" 
 						width="200"> 
 					<s:layout>
 						<s:VerticalLayout gap="0" horizontalAlign="center"/>
 					</s:layout> 
-				</s:List>
+				</s:DataGroup>
 			</s:HGroup>
 			<s:HGroup width="50%">
 				<s:Label text="Chiều: " height="100%" paddingLeft="50" />
-				<s:List id="aftData"
+				<s:DataGroup id="aftData"
 						itemRenderer="components.ListNameEmployeeByDay" 
 						width="200"> 
 					<s:layout>
 						<s:VerticalLayout gap="0" horizontalAlign="center"/>
 					</s:layout> 
-				</s:List>
+				</s:DataGroup>
 			</s:HGroup>
 		</s:HGroup>
 	</s:VGroup>
@@ -114,18 +111,62 @@
 		<s:Label text="Số người xin nghỉ:  "/>
 		<s:HGroup>
 			<s:Label text="Gồm: " height="100%" paddingLeft="50" />
-			<s:List id="unyokeData"
+			<s:DataGroup id="unyokeData"
 					itemRenderer="components.ListNameEmployeeByDay" 
 					width="200"> 
 				<s:layout>
 					<s:VerticalLayout gap="0" horizontalAlign="center"/>
 				</s:layout> 
-			</s:List>
+			</s:DataGroup>
 		</s:HGroup>
-	</s:VGroup>
+	</s:VGroup>-->
 	
-	
+	<s:HGroup gap="0" minHeight="280">
+		<s:VGroup  width="400" gap="0" height="100%">
+			<components:ABorderContainer lbThu="Đi"  height="30"/>
+			<s:HGroup gap="0" height="100%">
+				<s:VGroup width="200" gap="0" height="100%">
+					<components:ABorderContainer lbThu="Sáng" height="30"/>
+					<s:HGroup width="100%" height="100%">
+						<s:List id="monData"
+									 itemRenderer="components.ListNameEmployeeByDay" 
+									 width="200" height="100%"> 
+							<s:layout>
+								<s:VerticalLayout gap="0" horizontalAlign="center"/>
+							</s:layout> 
+						</s:List>
+					</s:HGroup>
+				</s:VGroup>
+				
+				<s:VGroup width="200" gap="0" height="100%">
+					<components:ABorderContainer lbThu="Chiều" height="30"/>
+					<s:HGroup width="100%" height="100%">
+						<s:List id="aftData" height="100%"
+									 itemRenderer="components.ListNameEmployeeByDay" 
+									 width="200" > 
+							<s:layout>
+								<s:VerticalLayout gap="0" horizontalAlign="center"/>
+							</s:layout> 
+						</s:List>
+					</s:HGroup>
+				</s:VGroup>
+			</s:HGroup>
+		</s:VGroup>
+			
+		<s:VGroup width="300" gap="0" height="100%">
+			<components:ABorderContainer lbThu="Nghỉ"  height="60"/>
+			<s:HGroup width="100%" gap="0"
+					  height="100%">
+				<s:List id="unyokeData"
+							 itemRenderer="components.ListNameEmployeeByDay"
+							 width="100%" height="100%"> 
+					<s:layout>
+						<s:VerticalLayout gap="0" horizontalAlign="center"/>
+					</s:layout> 
+				</s:List>
+			</s:HGroup>
+		</s:VGroup>
+	</s:HGroup>
 	<s:Label text="Sự kiện: Liên hoan 20/10" 
-			 paddingTop="20"
 			 color="red"/>
 </s:Group>
