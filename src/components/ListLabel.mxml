@@ -4,48 +4,25 @@
 				xmlns:mx="library://ns.adobe.com/flex/mx" 
 				autoDrawBackground="true"
 				creationComplete="itemrenderer1_creationCompleteHandler(event)"
-				height="100%" width="99">
+				height="100%" width="120">
 	<fx:Script>
 		<![CDATA[
 			import mx.collections.ArrayCollection;
 			import mx.events.FlexEvent;
 			protected function itemrenderer1_creationCompleteHandler(event:FlexEvent):void
 			{
-				// TODO Auto-generated method stub
-				/*for(var i:int = 0; i< (dataEmployeeName.length -1) ; i++){
-					mydata.dataProvider.addItem(dataEmployeeName.getItemAt(i));
-				}*/
 				mydata.dataProvider = data as ArrayCollection;
 			}
 			
-			/**
-			 *  @private
-			 */
-			/*override public function set data(value:Object):void
-			{
-				super.data = value;
-				if (mydata)
-					mydata.dataProvider = data as ArrayCollection;
-			}*/
 		]]>
 	</fx:Script>
 	
-	<s:BorderContainer>
-		<s:layout>
-			<s:VerticalLayout/>
-		</s:layout>
-		<!--<s:Label text="dfgdf"/>-->
-		<s:List width="100%" id="mydata"
+	<s:BorderContainer width="100%" height="100%">
+		<s:DataGroup width="100%" id="mydata"
 				itemRenderer="spark.skins.spark.DefaultItemRenderer"> 
 			<s:layout>
 				<s:VerticalLayout horizontalAlign="center"/>
 			</s:layout> 
-<!--			<mx:ArrayList>
-				<fx:String>shdhsd</fx:String>
-				<fx:String>shdhsd</fx:String>
-				<fx:String>shdhsd</fx:String>
-				<fx:String>shdhsd</fx:String>
-			</mx:ArrayList>-->
-		</s:List>
+		</s:DataGroup>
 	</s:BorderContainer>
 </s:ItemRenderer>

@@ -14,13 +14,9 @@
 			
 			protected function group1_creationCompleteHandler(event:FlexEvent):void
 			{
-				// TODO Auto-generated method stub
-				/*var dataEmployee:SampleDataUtil = new SampleDataUtil;
-				mon.dataProvider = dataEmployee.getEmployeeCalendarMon();
-				aft.dataProvider = dataEmployee.getEmployeeCalendarAft();*/
 				var employeeService:EmployeeService = new EmployeeService();
-				mon.dataProvider = employeeService.employeeCalendarMon;
-				aft.dataProvider = employeeService.employeeCalendarAft;
+				mon.dataProvider = employeeService.employeeCalendarMonOfWeek;
+				aft.dataProvider = employeeService.employeeCalendarAftOfWeek;
 			}
 			
 		]]>
@@ -33,7 +29,7 @@
 			 width="100%"/>
 	<s:HGroup verticalAlign="middle"
 			  width="100%" gap="0"
-			  paddingBottom="30">		
+			  paddingBottom="15">		
 		<s:Form>
 			<s:FormItem>
 				<s:Label text="Từ ngày" />
@@ -53,22 +49,22 @@
 		<s:HGroup gap="0">
 			<s:Label width="100"/>
 			<components:ABorderContainer lbThu="Thứ 2"
-										 width="100"
+										 width="120"
 										 height="50"/>
 			<components:ABorderContainer lbThu="Thứ 3"
-										 width="100"
+										 width="120"
 										 height="50"/>
 			<components:ABorderContainer lbThu="Thứ 4"
-										 width="100"
+										 width="120"
 										 height="50"/>
 			<components:ABorderContainer lbThu="Thứ 5"
-										 width="100"
+										 width="120"
 										 height="50"/>
 			<components:ABorderContainer lbThu="Thứ 6"
-										 width="100"
+										 width="120"
 										 height="50"/>
 			<components:ABorderContainer lbThu="Thứ 7"
-										 width="100"
+										 width="120"
 										 height="50"/>
 		</s:HGroup>
 		
@@ -76,14 +72,14 @@
 		<s:HGroup gap="0">
 			<components:ABorderContainer lbThu="Sáng"
 										 width="100"
-										 height="140"/>
-			<s:List itemRenderer="components.ListLabel"
-					width="600" height="140"
+										 height="200"/>
+			<s:DataGroup itemRenderer="components.ListLabel"
+					width="722" height="200"
 					id="mon">
 				<s:layout>
 					<s:HorizontalLayout gap="0"/>
 				</s:layout>
-			</s:List>
+			</s:DataGroup>
 		</s:HGroup>
 		
 		
@@ -92,14 +88,14 @@
 		<s:HGroup gap="0">
 			<components:ABorderContainer lbThu="Chiều"
 										 width="100"
-										 height="140"/>
-			<s:List itemRenderer="components.ListLabel"
-					width="600" height="140"
+										 height="200"/>
+			<s:DataGroup itemRenderer="components.ListLabel"
+					width="722" height="200"
 					id="aft">
 				<s:layout>
 					<s:HorizontalLayout gap="0"/>
 				</s:layout>
-			</s:List>
+			</s:DataGroup>
 		</s:HGroup>
 	</s:VGroup>
 	

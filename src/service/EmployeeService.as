@@ -1,45 +1,43 @@
 package service
 {
 	import mx.collections.ArrayCollection;
+	import mx.rpc.http.mxml.HTTPService;
 	
+	import models.Calendar;
 	import models.Employee;
+	
+	import utils.ServiceBase;
 
-	public class EmployeeService
+	public class EmployeeService extends ServiceBase
 	{
 		public var employees:ArrayCollection = new ArrayCollection;
-		public var employeeCalendarMon:ArrayCollection = new ArrayCollection;
-		public var employeeCalendarAft:ArrayCollection = new ArrayCollection;
+		public var employeesOfDay:ArrayCollection = new ArrayCollection;		
+		public var calendars:CalendarService = new CalendarService;
+		
+		[Bindable]
+		public var employeeCalendarMonOfWeek:ArrayCollection = new ArrayCollection;
+		
+		[Bindable]
+		public var employeeCalendarAftOfWeek:ArrayCollection = new ArrayCollection;
+		
+		[Bindable]
+		public var employeeCalendarMonOfDay:ArrayCollection = new ArrayCollection;
+		
+		[Bindable]
+		public var employeeCalendarAftOfDay:ArrayCollection = new ArrayCollection;
+		
 		public function EmployeeService()
-		{
-			var names:Array = ["Nhung", "Hà", "Quốc", "Đại", "Chung", "Thanh", "Ngọc", "Thành"];
-			var i:int = 0;
-			var name:String;
-			for each (name in names)
-			{
-				var employEee:Employee = new Employee;
-				employEee.name = name;
-				employEee.dateOfBirth = new Date;
-				employEee.id = String(i);
-				employEee.phoneNumber = '0165323515';
-				employees.addItem(employEee);
+		{ 
+			httpService = new HTTPService("http://localhost:9090/web/employees");
+		}
+		
+		private static var _serviceCal:EmployeeService;
+		
+		public static function getInstance():EmployeeService{
+			if(_serviceCal == null){
+				_serviceCal = new EmployeeService;
 			}
-			
-			for (var j:int = 0; j< 6; j++)
-			{
-				var list1:ArrayCollection = new ArrayCollection;
-				var list2:ArrayCollection = new ArrayCollection;
-				var ranNumber:Number;
-				for each (name in names)
-				{
-					ranNumber = Math.floor(Math.random() * 8);
-					if (ranNumber > 2)
-						list1.addItem(name);
-					if (ranNumber < 6)
-						list2.addItem(name);
-				}
-				employeeCalendarMon.addItem(list1);
-				employeeCalendarAft.addItem(list2);
-			}
+			return _serviceCal;
 		}
 		
 		public function getEmployee(_id:String):Employee
@@ -53,12 +51,50 @@ package service
 			return employees;
 		}
 		
-		public function getEmployeeCalendarMon():ArrayCollection{
-			return this.employeeCalendarMon;
+		public function getEmployeeCalendarMonOfWeek():ArrayCollection
+		{
+			return this.employeeCalendarMonOfWeek;
 		}
 		
-		public function getEmployeeCalendarAft():ArrayCollection{
-			return this.employeeCalendarAft;
+		public function getEmployeeCalendarAftOfWeek():ArrayCollection
+		{
+			return this.employeeCalendarAftOfWeek;
 		}
+		
+		public function getEmployeeCalendarMonOfDay(day:int):ArrayCollection
+		{
+			for(var i:int = 0; i< calendars.getCalendarMonOfDay(day).length; i++)
+			{
+				var employeeId:String = Calendar(calendars.getCalendarMonOfDay(day).getItemAt(i)).employeeId;
+				for(var j:int=0; j < employees.length; j++)
+				{
+					if( Employee( employees.getItemAt(j)).id == employeeId)
+					{
+						employeeCalendarMonOfDay.addItem(employees.getItemAt(j));
+					}
+				}
+					
+			}
+			return employeeCalendarMonOfDay;
+		}
+		
+		public function getEmployeeCalendarAftOfDay(day:int):ArrayCollection
+		{
+			for(var i:int = 0; i< calendars.getCalendarAftOfDay(day).length; i++)
+			{
+				var employeeId:String = Calendar(calendars.getCalendarAftOfDay(day).getItemAt(i)).employeeId;
+				for(var j:int = 0; j < employees.length; j++)
+				{
+					if( Employee( employees.getItemAt(j)).id == employeeId)
+					{
+						employeeCalendarAftOfDay.addItem(employees.getItemAt(j));
+					}
+				}
+				
+			}
+			return this.employeeCalendarAftOfDay;
+		}
+		
+		
 	}
 }

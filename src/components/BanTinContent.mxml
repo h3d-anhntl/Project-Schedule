@@ -2,7 +2,8 @@
 <s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		 xmlns:s="library://ns.adobe.com/flex/spark" 
 		 xmlns:mx="library://ns.adobe.com/flex/mx"
-		 creationComplete="group1_creationCompleteHandler(event)" xmlns:components="components.*">
+		 xmlns:components="components.*"
+		 creationComplete="group1_creationCompleteHandler(event)">
 	
 	<s:layout>
 		<s:VerticalLayout padding="20" />
@@ -12,51 +13,97 @@
 			import mx.collections.ArrayCollection;
 			import mx.events.CalendarLayoutChangeEvent;
 			import mx.events.FlexEvent;
+			import mx.rpc.events.FaultEvent;
+			import mx.rpc.events.ResultEvent;
+			
+			import spark.components.Alert;
+			
+			import models.Calendar;
+			
+			import service.CalendarService;
+			import service.EmployeeService;
 			
 			import utils.SampleDataUtil;
 			
+			
 			[Bindable]
 			public var daySearch:String = "";
+			
 			[Bindable]
 			public var dataEmploy:SampleDataUtil = new SampleDataUtil;
+			
 			[Bindable]
 			public var dataEmployeeeMor:ArrayCollection;
 			
-			protected function group1_creationCompleteHandler(event:FlexEvent):void
-			{
-				// TODO Auto-generated method stub
-				/*monData.dataProvider = dataEmploy.getEmployees();				
-				aftData.dataProvider = dataEmploy.getEmployees();
-				unyokeData.dataProvider = dataEmploy.getEmployees();*/
-			}
+			
+			public var dataEmployee:EmployeeService;
+			
+			
+			public var dataCalendar:CalendarService;
+			
+			[Bindable]
+			public var dataMon:ArrayCollection = new ArrayCollection;
+			
+			[Bindable]
+			public var dataAft:ArrayCollection = new ArrayCollection;
+			
+			[Bindable]
+			public var calendars:ArrayCollection = new ArrayCollection;
 			
 			protected function search_clickHandler(event:MouseEvent):void
 			{
-				// TODO Auto-generated method stub
-				dataEmployeeeMor = new  ArrayCollection;
-				/*var dataEmployeeDay:ArrayCollection = dataEmploy.searchDay();
-				if(daySearch == "1"){
-					for(var i:int=0; i< (dataEmployeeDay.length-1); i++){
-						var calenderByEmployee:Calendar = new  Calendar;
-						calenderByEmployee = Calendar(dataEmployeeDay.getItemAt(i));
-						for(var j:int = 0 ; j < calenderByEmployee.schedule.length -1; i++){
-							if(calenderByEmployee.schedule.getItemAt(j) == "1"||
-								calenderByEmployee.schedule.getItemAt(j) == "0"){
-								dataEmployeeeMor.addItem(dataEmploy.getEmployee(calenderByEmployee.employeeId));
-								break;
-							}
-						}
-					}
-				}*/
-				/*dataEmployeeeMor = dataEmploy.getEmployeebyDay(String(daySearch))*/
-				monData.dataProvider = dataEmployeeeMor;
 			}
 			
 			protected function chonNgay_changeHandler(event:CalendarLayoutChangeEvent):void
 			{
-				// TODO Auto-generated method stub
 				if (DateField(event.currentTarget).selectedDate)
 					daySearch = String(DateField(event.currentTarget).selectedDate.getDay());
+			}
+			
+			protected function group1_creationCompleteHandler(event:FlexEvent):void
+			{
+				dataCalendar = CalendarService.getInstance();
+				dataCalendar.send(onResultHttpServiceCal,onFaultHttpServiceCal);
+			}
+			
+			protected function  onResultHttpServiceCal(event:ResultEvent):void
+			{
+				
+				var items:Array = dataCalendar.convertXmlToArray(String(event.result));
+				var calendar:Calendar;
+				for each (var cal:Object in items) 
+				{
+					calendar = new Calendar(); 
+					calendar.id = cal.id;
+					if(cal.startDate == null){
+						calendar.startDate = null;
+					}else{
+						calendar.startDate = DateField.stringToDate(cal.startDate,"YYYY-MM-DD");
+					}
+					
+					if(cal.endDate == null){
+						calendar.endDate = null;
+					}else{
+						calendar.endDate = DateField.stringToDate(cal.endDate,"YYYY-MM-DD");
+					}
+					calendar.isWorking = cal.isWorking;
+					calendar.employeeId = cal.employeeId;
+					calendar.schedule = new ArrayCollection;
+					var array:Array = cal.schedule.split(',');
+					for each(var str:String in array)
+					{
+						
+						calendar.schedule.addItem(int(str));
+					}
+					
+					calendars.addItem(calendar);
+				}
+				
+			}
+			protected function onFaultHttpServiceCal(event:FaultEvent):void
+			{
+				Alert.show(event.fault.faultString, "Fault Information");
+				
 			}
 			
 		]]>
@@ -77,46 +124,6 @@
 				  id="search"
 				  click="search_clickHandler(event)"/>
 	</s:HGroup>
-	<!--<s:VGroup >
-		<s:Label text="Số người đi:  "  paddingRight="50" width="200"/>
-		<s:HGroup width="600" padding="20">
-			<s:HGroup width="50%">
-				<s:Label text="Sáng: " height="100%" paddingLeft="50" />
-				<s:DataGroup id="monData"
-						itemRenderer="components.ListNameEmployeeByDay" 
-						width="200"> 
-					<s:layout>
-						<s:VerticalLayout gap="0" horizontalAlign="center"/>
-					</s:layout> 
-				</s:DataGroup>
-			</s:HGroup>
-			<s:HGroup width="50%">
-				<s:Label text="Chiều: " height="100%" paddingLeft="50" />
-				<s:DataGroup id="aftData"
-						itemRenderer="components.ListNameEmployeeByDay" 
-						width="200"> 
-					<s:layout>
-						<s:VerticalLayout gap="0" horizontalAlign="center"/>
-					</s:layout> 
-				</s:DataGroup>
-			</s:HGroup>
-		</s:HGroup>
-	</s:VGroup>
-	
-	<s:VGroup>
-		<s:Label text="Số người xin nghỉ:  "/>
-		<s:HGroup>
-			<s:Label text="Gồm: " height="100%" paddingLeft="50" />
-			<s:DataGroup id="unyokeData"
-					itemRenderer="components.ListNameEmployeeByDay" 
-					width="200"> 
-				<s:layout>
-					<s:VerticalLayout gap="0" horizontalAlign="center"/>
-				</s:layout> 
-			</s:DataGroup>
-		</s:HGroup>
-	</s:VGroup>-->
-
 	<s:HGroup gap="0" minHeight="280">
 		<s:VGroup  width="400" gap="0" height="100%">
 			<components:ABorderContainer lbThu="Đi"  height="30"/>
@@ -124,7 +131,7 @@
 				<s:VGroup width="200" gap="0" height="100%">
 					<components:ABorderContainer lbThu="Sáng" height="30"/>
 					<s:HGroup width="100%" height="100%">
-						<s:List id="monData"
+						<s:List id="monData" dataProvider="{dataMon}"
 									 itemRenderer="components.ListNameEmployeeByDay"
 									 width="200" height="100%">
 							<s:layout>
@@ -137,7 +144,7 @@
 				<s:VGroup width="200" gap="0" height="100%">
 					<components:ABorderContainer lbThu="Chiều" height="30"/>
 					<s:HGroup width="100%" height="100%">
-						<s:List id="aftData" height="100%"
+						<s:List id="aftData" height="100%" dataProvider="{dataAft}"
 									 itemRenderer="components.ListNameEmployeeByDay"
 									 width="200" >
 							<s:layout>
