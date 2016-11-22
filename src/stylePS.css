@@ -2,18 +2,22 @@
 @namespace s "library://ns.adobe.com/flex/spark";
 @namespace mx "library://ns.adobe.com/flex/mx";
 @namespace cx "components.*";
+@namespace components "net.projectschedule.gui.components.*";
+@namespace gui "net.projectschedule.gui.*";
+@namespace skins "net.projectschedule.gui.skins.*";
+@namespace view "net.projectschedule.gui.view.*";
 
-cx|AppHeader s|Label{
+components|AppHeader s|Label{
 	fontWeight: bold;
 	color: #FFFFFF;
 }
-cx|NavButton s|Button{
+components|NavButton s|Button{
 	verticalAlign: middle;
 }
-cx|NavButton s|Button:down{
+components|NavButton s|Button:down{
 	backgroundColor: #E8E8E8;
 }
-cx|NavButton s|Button:up{
+components|NavButton s|Button:up{
 	backgroundColor: #121212;
 }
 
@@ -29,15 +33,34 @@ cx|NavButton s|Button:up{
 	fontSize: 16px;
 }*/
 
-cx|LichDangKy s|BorderContainer{
+skins|LichDangKy s|BorderContainer{
 	borderWeight: 1px;
 	backgroundColor :#dddddd;
 }
-cx|TraCuuLichCaNhan s|BorderContainer{
+
+view|BanTinConTent
+{
+	skinClass:ClassReference("net.projectschedule.gui.skins.BanTinConTentSkin");
+}
+
+skins|TraCuuLichCaNhan s|BorderContainer{
 	borderWeight: 1px;
 	backgroundColor :#dddddd;
 }
-cx|LichTongQuat s|BorderContainer{
+skins|LichTongQuat s|BorderContainer{
 	borderWeight: 1px;
 	backgroundColor :#dddddd;
+}
+view|LichTongQuat
+{
+	skinClass:ClassReference("net.projectschedule.gui.skins.LichTongQuatSkin")	
+}
+
+view|LichDangKy
+{
+	skinClass:ClassReference("net.projectschedule.gui.skins.LichDangKySkin")
+}
+view|TraCuuLichCaNhan
+{
+	skinClass:ClassReference("net.projectschedule.gui.skins.TraCuuLichCaNhanSkin")
 }

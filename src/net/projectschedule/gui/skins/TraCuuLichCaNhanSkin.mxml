@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:components="net.projectschedule.gui.components.*">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("net.projectschedule.gui.view.TraCuuLichCaNhan")]
+	</fx:Metadata>
+	
+	<s:Group>
+		
+		<s:layout>
+			<s:VerticalLayout padding="20"/>
+		</s:layout>
+		<s:Label text="Tra cứu lịch cá nhân: " fontWeight="bold" fontSize="20"
+				 width="100%"
+				 paddingBottom="20"/>
+		<s:VGroup verticalAlign="middle"
+				  paddingLeft="230"
+				  width="100%" gap="0"
+				  paddingBottom="30">	
+			<s:HGroup verticalAlign="middle" 
+					  gap="0"  height="30">
+				<s:Label text="Chọn nhân viên: " 
+						 width="110" />
+				<s:ComboBox id="myCB" width="175" /> 
+			</s:HGroup>
+			<s:HGroup verticalAlign="middle" 
+					  gap="0"  height="30">
+				<s:Label text="Từ ngày:"  width="80"/>
+				<s:Form>
+					<s:FormItem>
+						<mx:DateField width="200"  
+									  id="tuNgay" />
+					</s:FormItem>
+				</s:Form>
+			</s:HGroup>
+			<s:HGroup verticalAlign="middle" 
+					  gap="0" height="30">
+				<s:Label text="Đến ngày:" width="80" />
+				<s:Form>
+					<s:FormItem>
+						<mx:DateField width="200" id="denNgay"/>
+					</s:FormItem>
+				</s:Form>
+			</s:HGroup>
+			<s:HGroup paddingLeft="110"
+					  paddingTop="10">
+				<s:Button label="Tra cứu"
+						  id="traCuu"
+						  skinClass="net.projectschedule.gui.skins.ButtonWithStatesSkin"
+						  width="100" height="25"/>
+			</s:HGroup>
+			
+		</s:VGroup>
+		<s:VGroup gap="0" paddingLeft="30"
+				  width="100%">	 
+			<!--Define Row 1.	-->
+			<s:HGroup gap="0">
+				<s:Label width="100"/>
+				<components:ABorderContainer lbThu="Thứ 2"
+											 width="100"
+											 height="50"/>
+				<components:ABorderContainer lbThu="Thứ 3"
+											 width="100"
+											 height="50"/>
+				<components:ABorderContainer lbThu="Thứ 4"
+											 width="100"
+											 height="50"/>
+				<components:ABorderContainer lbThu="Thứ 5"
+											 width="100"
+											 height="50"/>
+				<components:ABorderContainer lbThu="Thứ 6"
+											 width="100"
+											 height="50"/>
+				<components:ABorderContainer lbThu="Thứ 7"
+											 width="100"
+											 height="50"/>
+			</s:HGroup>
+			
+			<!--Define Row 2.-->
+			<s:HGroup gap="0">
+				<components:ABorderContainer lbThu="Sáng"
+											 width="100"
+											 height="50"/>
+				<components:ABorderContainerCheckBox width="100"
+													 height="50" 
+													 id="st2"/>
+				<components:ABorderContainerCheckBox width="100"
+													 height="50"
+													 id="st3"/>
+				<components:ABorderContainerCheckBox width="100"
+													 height="50"
+													 id="st4"/>
+				<components:ABorderContainerCheckBox width="100"
+													 height="50"
+													 id="st5"/>
+				<components:ABorderContainerCheckBox width="100"
+													 height="50"
+													 id="st6"/>
+				<components:ABorderContainerCheckBox width="100"
+													 height="50"
+													 id="st7"/>
+			</s:HGroup>
+			
+			
+			
+			<!--Define Row 3.-->
+			<s:HGroup gap="0">
+				<components:ABorderContainer lbThu="Chiều"
+											 width="100"
+											 height="50"/>
+				<components:ABorderContainerCheckBox width="100"
+													 height="50"
+													 id="ct2"/>
+				<components:ABorderContainerCheckBox width="100"
+													 height="50"
+													 id="ct3"/>
+				<components:ABorderContainerCheckBox width="100"
+													 height="50"
+													 id="ct4"/>
+				<components:ABorderContainerCheckBox width="100"
+													 height="50"
+													 id="ct5"/>
+				<components:ABorderContainerCheckBox width="100"
+													 height="50"
+													 id="ct6"/>
+				<components:ABorderContainerCheckBox width="100"
+													 height="50"
+													 id="ct7"/>
+			</s:HGroup>
+		</s:VGroup>
+	</s:Group>
+</s:Skin>

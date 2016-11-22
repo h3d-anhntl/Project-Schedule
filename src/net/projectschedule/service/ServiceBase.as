@@ -1,20 +1,26 @@
-package utils
+package net.projectschedule.service
 {
 	import flash.xml.XMLDocument;
 	
+	import mx.collections.ArrayCollection;
 	import mx.rpc.events.FaultEvent;
 	import mx.rpc.events.ResultEvent;
 	import mx.rpc.http.mxml.HTTPService;
 	import mx.rpc.xml.SimpleXMLDecoder;
+	
+	import net.projectschedule.models.Calendar;
+	import net.projectschedule.models.Employee;
 
 	public class ServiceBase 
 	{
-	
+		protected var url:String;
 		public var httpService:HTTPService;/* = new HTTPService( "http://localhost:9090/web/employees");
 		
 		public var httpServiceCal:HTTPService = new HTTPService( "http://localhost:9090/web/calendars");*/
 		
 		public function ServiceBase(){
+			httpService = new HTTPService();
+			httpService.url = url;
 			httpService.resultFormat = "e4x";
 			httpService.addEventListener(ResultEvent.RESULT, onResultHttpServiceCal);
 			httpService.addEventListener(FaultEvent.FAULT, onFaultHttpServiceCal);
@@ -50,66 +56,30 @@ package utils
 				_faultHandler(event);
 				
 		}
-		
-		/*public function httpServiceEmpSend():void{
-			httpServiceEmp.send();
-		}
-		
-		public function httpServiceCalSend():void{
-			httpServiceCal.send();
-		}
-		
-		public function calendarDB():void
+		public function getAll(type:Class ,completeFuntionCallBack:Function = null):ArrayCollection
 		{
-			httpServiceEmpSend();
-			
-		}
-		public function empployeeDB():void
-		{
-			httpServiceCal.resultFormat = "e4x";
-			httpServiceCal.addEventListener(FaultEvent.FAULT, onFaultHttpServiceCal);
-			httpServiceCal.addEventListener(ResultEvent.RESULT, onResultHttpServiceCal);	
-			httpServiceCalSend();
-		}
-		
-		
-		
-		protected function  onResultHttpServiceEmp(event:ResultEvent):void
-		{
-			if (_completeHandler)
-				_completeHandler();
-			
-			var items:Array = convertXmlToArray(String(event.result));
-			var employee:Employee;
-			if(employeess == null)
-			{
-				for each (var emp:Object in items) 
-				{
-					employee = new Employee(); 
-					employee.id = emp.id; 
-					employee.address = emp.address;
-					employee.dateOfBirth = DateField.stringToDate(emp.dateOfBirth,"YYYY-MM-DD");
-					employee.name = emp.name;
-					employee.phoneNumber = emp.phoneNumber;
-					employeess.addItem(employee);
+			var results:ArrayCollection = new ArrayCollection;
+			this.send(
+				function(event:ResultEvent):void{
+					var temp:Array = convertXmlToArray(String(event.result));
+					for each (var item:Object in temp)
+					{
+						if(type == Employee){
+							results.addItem(Employee.fromObject(item));
+						}
+						else if(type == Calendar){
+							results.addItem(Calendar.fromObject(item));
+						}
+					}
+						
+					
+					if(completeFuntionCallBack != null ){
+						completeFuntionCallBack(event);
+					}
 				}
-			}
-			
+			);
+			return results;
 		}
-		
-		
-		
-		protected function onFaultHttpServiceEmp(event:FaultEvent):void
-		{
-			Alert.show(event.fault.faultString, "Fault Information");
-			
-		}
-		
-		protected function onFaultHttpServiceCal(event:FaultEvent):void
-		{
-			Alert.show(event.fault.faultString, "Fault Information");
-			
-		}*/
 			
 	}
 }

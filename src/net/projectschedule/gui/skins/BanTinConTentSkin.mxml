@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx" 
+		xmlns:components="net.projectschedule.gui.components.*">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("net.projectschedule.gui.view.BanTinConTent")]
+	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import net.projectschedule.gui.components.ListNameEmployeeByDay;
+		]]>
+	</fx:Script>
+	<s:VGroup>
+		
+		<s:HGroup verticalAlign="middle"
+				  paddingBottom="50">
+			<s:Label text="Ngày: "/>
+			<s:Form>
+				<s:FormItem>
+					<mx:DateField width="200" 
+								  text="{chonNgay.selectedDate.toDateString()}" 
+								  id="chonNgay" />
+				</s:FormItem>
+			</s:Form>
+			<s:Button label="Tìm"
+					  id="search"/>
+		</s:HGroup>
+		<s:HGroup gap="0" minHeight="280">
+			<s:VGroup  width="400" gap="0" height="100%">
+				<components:ABorderContainer lbThu="Đi"  height="30"/>
+				<s:HGroup gap="0" height="100%">
+					<s:VGroup width="200" gap="0" height="100%">
+						<components:ABorderContainer lbThu="Sáng" height="30"/>
+						<s:HGroup width="100%" height="100%">
+							<s:List id="monData"
+									width="200" height="100%">
+								<s:layout>
+									<s:VerticalLayout gap="0" horizontalAlign="center"/>
+								</s:layout>
+							</s:List>
+						</s:HGroup>
+					</s:VGroup>
+					
+					<s:VGroup width="200" gap="0" height="100%">
+						<components:ABorderContainer lbThu="Chiều" height="30"/>
+						<s:HGroup width="100%" height="100%">
+							<s:List id="aftData" height="100%" width="200" >
+								<s:layout>
+									<s:VerticalLayout gap="0" horizontalAlign="center"/>
+								</s:layout>
+							</s:List>
+						</s:HGroup>
+					</s:VGroup>
+				</s:HGroup>
+			</s:VGroup>
+			
+			<s:VGroup width="300" gap="0" height="100%">
+				<components:ABorderContainer lbThu="Nghỉ"  height="60"/>
+				<s:HGroup width="100%" gap="0"
+						  height="100%">
+					<s:List id="unyokeData"
+							itemRenderer="net.projectschedule.gui.components.ListNameEmployeeByDay"
+							width="100%" height="100%">
+						<s:layout>
+							<s:VerticalLayout gap="0" horizontalAlign="center"/>
+						</s:layout>
+					</s:List>
+				</s:HGroup>
+			</s:VGroup>
+		</s:HGroup>
+		<s:Label text="Sự kiện: Liên hoan 20/10"
+				 color="red"/>
+	</s:VGroup>
+</s:Skin>

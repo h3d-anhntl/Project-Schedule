@@ -1,4 +1,4 @@
-package events
+package net.projectschedule.events
 {
 	import flash.events.Event;
 	

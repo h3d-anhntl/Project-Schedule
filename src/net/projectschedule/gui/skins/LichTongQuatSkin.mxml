@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:components="net.projectschedule.gui.components.*">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("net.projectschedule.gui.view.LichTongQuat")]
+	</fx:Metadata>
+	
+	<s:Group>
+		<s:layout>
+			<s:VerticalLayout padding="20"/>
+		</s:layout>
+		<s:Label text="Đăng ký: " fontWeight="bold" fontSize="20"
+				 width="100%"/>
+		<s:HGroup verticalAlign="middle"
+				  width="100%" gap="0"
+				  paddingBottom="15">		
+			<s:Form>
+				<s:FormItem>
+					<s:Label text="Từ ngày" />
+					<mx:DateField width="200"  id="tuNgay" />
+				</s:FormItem>
+			</s:Form>
+			<s:Form>
+				<s:FormItem>
+					<s:Label text="Đến ngày" />
+					<mx:DateField width="200"  id="denNgay" />
+				</s:FormItem>
+			</s:Form>
+		</s:HGroup>
+		<s:VGroup gap="0" paddingLeft="30"
+				  width="100%">	 
+			<!--Define Row 1.	-->
+			<s:HGroup gap="0">
+				<s:Label width="100"/>
+				<components:ABorderContainer lbThu="Thứ 2"
+											 width="120"
+											 height="50"/>
+				<components:ABorderContainer lbThu="Thứ 3"
+											 width="120"
+											 height="50"/>
+				<components:ABorderContainer lbThu="Thứ 4"
+											 width="120"
+											 height="50"/>
+				<components:ABorderContainer lbThu="Thứ 5"
+											 width="120"
+											 height="50"/>
+				<components:ABorderContainer lbThu="Thứ 6"
+											 width="120"
+											 height="50"/>
+				<components:ABorderContainer lbThu="Thứ 7"
+											 width="120"
+											 height="50"/>
+			</s:HGroup>
+			
+			<!--Define Row 2.-->
+			<s:HGroup gap="0">
+				<components:ABorderContainer lbThu="Sáng"
+											 width="100"
+											 height="200"/>
+				<s:DataGroup width="722" height="200"
+							 id="mon">
+					<s:layout>
+						<s:HorizontalLayout gap="0"/>
+					</s:layout>
+				</s:DataGroup>
+			</s:HGroup>
+			
+			
+			
+			<!--Define Row 3.-->
+			<s:HGroup gap="0">
+				<components:ABorderContainer lbThu="Chiều"
+											 width="100"
+											 height="200"/>
+				<s:DataGroup width="722" height="200"
+							 id="aft">
+					<s:layout>
+						<s:HorizontalLayout gap="0"/>
+					</s:layout>
+				</s:DataGroup>
+			</s:HGroup>
+		</s:VGroup>
+	</s:Group>
+</s:Skin>

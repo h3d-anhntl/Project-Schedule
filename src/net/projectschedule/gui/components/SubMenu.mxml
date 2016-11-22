@@ -6,16 +6,16 @@
 
 	
 	<fx:Metadata>
-		[Event(name="clickBt", type="events.StateEvent")]
+		[Event(name="clickBt", type="net.projectschedule.events.StateEvent")]
 	</fx:Metadata>
 	
 	<fx:Script>
 		<![CDATA[
 			import mx.events.FlexEvent;
 			
-			import events.StateEvent;
+			import net.projectschedule.events.StateEvent;
 			
-			import skins.ButtonWithStatesSkin;
+			import net.projectschedule.gui.skins.ButtonWithStatesSkin;
 			
 			protected function btLich_clickHandler(event:MouseEvent):void
 			{
@@ -83,7 +83,7 @@
 	</s:layout>
 	<s:Button label="Lịch" height="40" 
 			  width="200" 
-			  skinClass="skins.ButtonWithStatesSkin"
+			  skinClass="net.projectschedule.gui.skins.ButtonWithStatesSkin"
 			  id="btLich" click="btLich_clickHandler(event)"/>
 	<s:Group>
 		<s:layout>
@@ -91,17 +91,17 @@
 		</s:layout>
 		<s:Button label="Đăng ký" height="40" 
 				  width="150" x="50"
-				  skinClass="skins.ButtonWithStatesSkin" 			 
+				  skinClass="net.projectschedule.gui.skins.ButtonWithStatesSkin" 			 
 				  id="btLichDangKy" right="20" 
 				  click="btLichDangKy_clickHandler(event)"/>
 		<s:Button label="Xin Phép" height="40" 
 				  width="150" 
-				  skinClass="skins.ButtonWithStatesSkin"			  
+				  skinClass="net.projectschedule.gui.skins.ButtonWithStatesSkin"			  
 				  id="btLichXinPhep" right="20"
 				  click="btLichXinPhep_clickHandler(event)"/>
 		<s:Button label="Tra cứu" height="40" 
 				  width="150" 
-				  skinClass="skins.ButtonWithStatesSkin"			  
+				  skinClass="net.projectschedule.gui.skins.ButtonWithStatesSkin"			  
 				  id="btTraCuu" right="20"
 				  click="btTraCuu_clickHandler(event)"/>
 	</s:Group>
