@@ -9,11 +9,17 @@ package net.projectschedule.gui.view
 	import spark.components.supportClasses.SkinnableComponent;
 	
 	import net.fproject.di.Injector;
+	import net.projectschedule.service.CalendarService;
 	
 	[EventHandling(event="creationComplete",handler="module_creationCompleteHandler")]
 	
 	public class LichDangKy extends SkinnableComponent
 	{
+		public function get calendarService():CalendarService
+		{
+			return CalendarService.getInstance();	
+		}
+		
 		public function LichDangKy()
 		{
 			Injector.inject(this);
@@ -26,9 +32,10 @@ package net.projectschedule.gui.view
 			denNgay.selectedDate = day;
 		}
 		
-		public function button1_clickHandler(event:MouseEvent):void
+		public function dangkyBtn_clickHandler(event:MouseEvent):void
 		{
-			
+			var data:Object = {"startDate": null,"endDate": null,"schedule": "4,6,5,9,2,7,8","isWorking": 1,"employeeId": 2};
+			calendarService.save(data);
 		}
 		
 		[SkinPart(required="true")]
@@ -38,7 +45,7 @@ package net.projectschedule.gui.view
 		public var denNgay:DateField;
 		
 		[SkinPart(required="true")]
-		[EventHandling(event="click",handler="button1_clickHandler")]
-		public var bt1:Button;
+		[EventHandling(event="click",handler="dangkyBtn_clickHandler")]
+		public var dangkyBtn:Button;
 	}
 }
