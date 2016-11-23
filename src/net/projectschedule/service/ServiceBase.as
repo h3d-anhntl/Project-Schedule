@@ -8,15 +8,14 @@ package net.projectschedule.service
 	import mx.rpc.http.mxml.HTTPService;
 	import mx.rpc.xml.SimpleXMLDecoder;
 	
+	import net.fproject.serialize.Serializer;
 	import net.projectschedule.models.Calendar;
 	import net.projectschedule.models.Employee;
 
 	public class ServiceBase 
 	{
 		protected var url:String;
-		public var httpService:HTTPService;/* = new HTTPService( "http://localhost:9090/web/employees");
-		
-		public var httpServiceCal:HTTPService = new HTTPService( "http://localhost:9090/web/calendars");*/
+		public var httpService:HTTPService;
 		
 		public function ServiceBase(){
 			httpService = new HTTPService();
@@ -41,7 +40,20 @@ package net.projectschedule.service
 		public function send(completeHandler:Function = null, faultHandler:Function = null):void{
 			_completeHandler = completeHandler;
 			_faultHandler = faultHandler;
+			httpService.method = "GET";
 			httpService.send();
+		}
+		
+		public function save(data:Object, completeHandler:Function = null, faultHandler:Function = null):void{
+			_completeHandler = completeHandler;
+			_faultHandler = faultHandler;
+			httpService.method = "POST";
+			httpService.contentType = "application/json";
+			httpService.resultFormat = "text";
+			httpService.useProxy = false;
+			httpService.makeObjectsBindable = true;
+			httpService.showBusyCursor = true;
+			httpService.send( Serializer.getInstance().toJSON(data));
 		}
 		
 		public function onResultHttpServiceCal(event:ResultEvent):void
