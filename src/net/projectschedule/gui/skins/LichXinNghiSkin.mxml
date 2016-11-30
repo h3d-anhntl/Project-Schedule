@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:components="net.projectschedule.gui.components.*">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("net.projectschedule.gui.view.LichXinNghi")]
+	</fx:Metadata>
+	
+	<s:Group>
+		
+		<s:layout>
+			<s:VerticalLayout padding="20"/>
+		</s:layout>
+		<s:Label text="Xin nghỉ đột xuất: " fontWeight="bold" fontSize="20"
+				 width="100%"
+				 paddingBottom="20"/>
+		<s:VGroup verticalAlign="middle"
+				  paddingLeft="230"
+				  width="100%" gap="20"
+				  paddingBottom="30">	
+			<s:HGroup verticalAlign="middle" 
+					  gap="0"  height="30">
+				<s:Label text="Chọn nhân viên: " 
+						 width="150" />
+				<s:ComboBox id="myCB" width="175" /> 
+			</s:HGroup>
+			<s:HGroup verticalAlign="middle" 
+					  gap="0"  height="30">
+				<s:Label text="Xin phép ngày:"  width="120"/>
+				<s:Form>
+					<s:FormItem>
+						<mx:DateField width="200"  
+									  id="tuNgay" />
+					</s:FormItem>
+				</s:Form>
+			</s:HGroup>
+			<s:HGroup height="30" >
+				<s:HGroup gap="0" height="100%" width="200" verticalAlign="middle">
+					<s:Label text="Sáng:" width="50" />
+					<s:CheckBox id="mon"/>
+				</s:HGroup>
+				<s:HGroup gap="0" height="100%" width="100" verticalAlign="middle">
+					<s:Label text="Chiều:" width="50" />
+					<s:CheckBox id="aft"/>
+				</s:HGroup>
+			</s:HGroup>
+			
+			<s:HGroup width="100%"
+					  horizontalAlign="right">
+				<s:Button id="dangkyBtn" label="Đăng ký" 
+						  skinClass="net.projectschedule.gui.skins.ButtonWithStatesSkin"
+						  width="100"
+						  height="35"/>
+			</s:HGroup>
+		</s:VGroup>
+		
+		
+	</s:Group>
+</s:Skin>

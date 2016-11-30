@@ -6,6 +6,7 @@ package net.projectschedule.utils
 	{
 		public static var calendars:ArrayCollection = new ArrayCollection;
 		public static var employees:ArrayCollection = new ArrayCollection;
+		public static var dayoff:ArrayCollection = new ArrayCollection;
 		public function DataUtil()
 		{
 			

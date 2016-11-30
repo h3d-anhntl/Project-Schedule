@@ -4,7 +4,9 @@
 			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600" 
 			   xmlns:components="net.projectschedule.gui.components.*"
 			   xmlns:core="net.fproject.gui.component.*"
-			   currentState="header" xmlns:gui="net.projectschedule.gui.*" xmlns:skins="net.projectschedule.gui.skins.*" xmlns:view="net.projectschedule.gui.view.*">
+			   currentState="header" xmlns:gui="net.projectschedule.gui.*" 
+			   xmlns:skins="net.projectschedule.gui.skins.*" 
+			   xmlns:view="net.projectschedule.gui.view.*">
 	
 	<fx:Style source="stylePS.css" />
 	
@@ -35,6 +37,8 @@
 						currentState = "lichTQ";
 						}else if(event.idBt == "btTraCuu"){
 							currentState = "tracuu";
+						}else if(event.idBt == "btLichXinPhep"){
+							currentState = "lichNghi";
 						}else{
 							Alert.show("Cái này đang bảo trì nhé");
 						}
@@ -50,6 +54,7 @@
 		<s:State name="lichDK" />
 		<s:State name="tracuu" />
 		<s:State name="lichTQ" />
+		<s:State name="lichNghi" />
 	</s:states>
 	
 	<s:Group width="100%">
@@ -77,6 +82,10 @@
 		<s:Group width="85%" height="650" includeIn="lichTQ">
 			<core:SolidColorRect width="100%" height="100%" styleName="maunen" />
 			<view:LichTongQuat  />
+		</s:Group>
+		<s:Group width="85%" height="650" includeIn="lichNghi">
+			<core:SolidColorRect width="100%" height="100%" styleName="maunen" />
+			<view:LichXinNghi />
 		</s:Group>
 	</s:HGroup>
 	

@@ -28,8 +28,8 @@ package net.projectschedule.gui.view
 	{
 		
 		public var emp:Employee;
-		public var mor:ArrayCollection = new ArrayCollection([{"id":0,"selected":true},{"id":2,"selected":false},{"id":4,"selected":false},{"id":6,"selected":false},{"id":8,"selected":false},{"id":10,"selected":false}]);
-		public var aft:ArrayCollection = new ArrayCollection([{"id":0,"selected":false},{"id":2,"selected":false},{"id":4,"selected":true},{"id":6,"selected":false},{"id":8,"selected":false},{"id":10,"selected":false}]);
+		public var mor:ArrayCollection = new ArrayCollection([{"id":0,"selected":false},{"id":2,"selected":false},{"id":4,"selected":false},{"id":6,"selected":false},{"id":8,"selected":false},{"id":10,"selected":false}]);
+		public var aft:ArrayCollection = new ArrayCollection([{"id":1,"selected":false},{"id":3,"selected":false},{"id":5,"selected":false},{"id":7,"selected":false},{"id":9,"selected":false},{"id":11,"selected":false}]);
 		
 		public function get calendarService():CalendarService
 		{
@@ -48,34 +48,36 @@ package net.projectschedule.gui.view
 		
 		public function module_creationCompleteHandler(event:FlexEvent):void
 		{
-			var day:Date = new Date;
-			tuNgay.selectedDate = day;
-			denNgay.selectedDate = day;
 			listMon.dataProvider = mor;
 			listAft.dataProvider = aft;
-			DataUtil.calendars = calendarService.getAll(Calendar,
+			/*DataUtil.calendars = calendarService.getAll(Calendar,
 				function(event:ResultEvent):void
 				{
 					DataUtil.employees = employeeService.getAll(Employee);
 				}
-			);
+			);*/
 			myCB.dataProvider = DataUtil.employees;
 			myCB.labelField = "name";
 		}
 		
 		public function dangkyBtn_clickHandler(event:MouseEvent):void
 		{
-			var data:Object = {"startDate": null,"endDate": null,"schedule": "4,6,5,9,2,7,8","isWorking": 1,"employeeId": 2};
 			var cal:Calendar = new Calendar;
 			if(emp){
 				cal.employeeId = emp.id;
-				cal.startDate = null;
-				cal.isWorking = true;
-				cal.endDate = null;
-				cal.schedule = new ArrayCollection;
+				var scheduleArray:ArrayCollection = new ArrayCollection;
+				for each(var i:Object in mor){
+					if (i.hasOwnProperty("selected") && i['selected'] && i.hasOwnProperty("id"))
+						scheduleArray.addItem(i["id"]);
+				}
+				for each(var k:Object in aft){
+					if (k.hasOwnProperty("selected") && k['selected'] && k.hasOwnProperty("id"))
+						scheduleArray.addItem(k["id"]);
+				}				
+				cal.schedule = scheduleArray.toString();
 				
 			}
-				calendarService.save(emp);
+			calendarService.save(cal)
 		}
 		
 		
@@ -87,12 +89,6 @@ package net.projectschedule.gui.view
 		}
 		
 		public var listCheckBoxItemRender:ClassFactory = new ClassFactory(CheckBoxItemRender);
-		
-		[SkinPart(required="true")]
-		public var tuNgay:DateField;
-		
-		[SkinPart(required="true")]
-		public var denNgay:DateField;
 		
 		[SkinPart(required="true")]
 		[EventHandling(event="click",handler="dangkyBtn_clickHandler")]

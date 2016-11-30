@@ -1,17 +1,18 @@
 package net.projectschedule.models
 {
 	import mx.collections.ArrayCollection;
-	import mx.controls.DateField;
 
-	[Bindable]
+	[RemoteClass(alias="FCalendar")]
 	public class Calendar
 	{
-		public var id:String;
-		public var startDate:Date;
-		public var endDate:Date;
-		public var employeeId:String;
-		public var schedule:ArrayCollection;
-		public var isWorking:Boolean = true;
+		[Bindable]
+		public var id:int;
+		
+		[Bindable]
+		public var employeeId:int;
+		
+		[Bindable]
+		public var schedule:String;
 		
 		public static const MON_MOR:int = 0;
 		public static const MON_AFT:int = 1;
@@ -34,28 +35,21 @@ package net.projectschedule.models
 		
 			calendar = new Calendar(); 
 			calendar.id = item.id;
-			if(item.startDate == null){
-				calendar.startDate = null;
-			}else{
-				calendar.startDate = DateField.stringToDate(item.startDate,"YYYY-MM-DD");
-			}
-			
-			if(item.endDate == null){
-				calendar.endDate = null;
-			}else{
-				calendar.endDate = DateField.stringToDate(item.endDate,"YYYY-MM-DD");
-			}
-			calendar.isWorking = item.isWorking;
 			calendar.employeeId = item.employeeId;
-			calendar.schedule = new ArrayCollection;
-			var array:Array = item.schedule.split(',');
-			for each(var str:String in array)
-			{
-				
-				calendar.schedule.addItem(int(str));
-			}
-			
+			calendar.schedule = item.schedule;
 			return calendar;
+		}
+		
+		public function scheduleConvertToArray( str:String):ArrayCollection
+		{
+			var scheduleArrayCollection:ArrayCollection = new ArrayCollection;
+			var array:Array = str.split(',');
+			for each(var str1:String in array)
+			{			
+				scheduleArrayCollection.addItem(int(str1));
+			}
+			return scheduleArrayCollection;
+			
 		}
 		
 	}

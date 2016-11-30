@@ -12,9 +12,9 @@
 		<s:layout>
 			<s:VerticalLayout padding="20"/>
 		</s:layout>
-		<s:Label text="Đăng ký: " fontWeight="bold" fontSize="20"
-				 width="100%"/>
-		<s:HGroup verticalAlign="middle"
+		<s:Label text="Lịch tổng quát: " fontWeight="bold" fontSize="20"
+				 width="100%" height="60"/>
+		<!--<s:HGroup verticalAlign="middle"
 				  width="100%" gap="0"
 				  paddingBottom="15">		
 			<s:Form>
@@ -29,7 +29,7 @@
 					<mx:DateField width="200"  id="denNgay" />
 				</s:FormItem>
 			</s:Form>
-		</s:HGroup>
+		</s:HGroup>-->
 		<s:VGroup gap="0" paddingLeft="30"
 				  width="100%">	 
 			<!--Define Row 1.	-->

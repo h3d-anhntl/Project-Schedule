@@ -18,11 +18,10 @@
 	</fx:Script>
 	
 	<s:BorderContainer width="100%" height="100%">
-		<s:DataGroup width="100%" id="mydata"
-				itemRenderer="spark.skins.spark.DefaultItemRenderer"> 
+		<s:List width="100%" id="mydata" styleName="noneBorder" labelField="name"> 
 			<s:layout>
 				<s:VerticalLayout horizontalAlign="center"/>
 			</s:layout> 
-		</s:DataGroup>
+		</s:List>
 	</s:BorderContainer>
 </s:ItemRenderer>

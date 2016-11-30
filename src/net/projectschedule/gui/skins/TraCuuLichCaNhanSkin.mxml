@@ -84,24 +84,12 @@
 				<components:ABorderContainer lbThu="Sáng"
 											 width="100"
 											 height="50"/>
-				<components:ABorderContainerCheckBox width="100"
-													 height="50" 
-													 id="st2"/>
-				<components:ABorderContainerCheckBox width="100"
-													 height="50"
-													 id="st3"/>
-				<components:ABorderContainerCheckBox width="100"
-													 height="50"
-													 id="st4"/>
-				<components:ABorderContainerCheckBox width="100"
-													 height="50"
-													 id="st5"/>
-				<components:ABorderContainerCheckBox width="100"
-													 height="50"
-													 id="st6"/>
-				<components:ABorderContainerCheckBox width="100"
-													 height="50"
-													 id="st7"/>
+				<s:List id="listMon" width="100%" height="50"  
+						styleName="noneBorder">
+					<s:layout>
+						<s:HorizontalLayout gap="0" />
+					</s:layout>
+				</s:List>
 			</s:HGroup>
 			
 			
@@ -111,24 +99,11 @@
 				<components:ABorderContainer lbThu="Chiều"
 											 width="100"
 											 height="50"/>
-				<components:ABorderContainerCheckBox width="100"
-													 height="50"
-													 id="ct2"/>
-				<components:ABorderContainerCheckBox width="100"
-													 height="50"
-													 id="ct3"/>
-				<components:ABorderContainerCheckBox width="100"
-													 height="50"
-													 id="ct4"/>
-				<components:ABorderContainerCheckBox width="100"
-													 height="50"
-													 id="ct5"/>
-				<components:ABorderContainerCheckBox width="100"
-													 height="50"
-													 id="ct6"/>
-				<components:ABorderContainerCheckBox width="100"
-													 height="50"
-													 id="ct7"/>
+				<s:List id="listAft" width="100%" height="50" styleName="noneBorder">
+					<s:layout>
+						<s:HorizontalLayout gap="0"/>
+					</s:layout>
+				</s:List>
 			</s:HGroup>
 		</s:VGroup>
 	</s:Group>

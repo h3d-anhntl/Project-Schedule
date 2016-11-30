@@ -10,6 +10,7 @@ package net.projectschedule.service
 	
 	import net.fproject.serialize.Serializer;
 	import net.projectschedule.models.Calendar;
+	import net.projectschedule.models.Dayoff;
 	import net.projectschedule.models.Employee;
 
 	public class ServiceBase 
@@ -30,7 +31,14 @@ package net.projectschedule.service
 			var xml:XMLDocument = new XMLDocument(file);
 			var decoder:SimpleXMLDecoder = new SimpleXMLDecoder;
 			var data:Object = decoder.decodeXML((xml));
-			var items:Array = data.response.item;
+			if(data.response.item is Array){
+				
+				var items:Array = data.response.item;
+			}
+			else{
+				items = new Array;
+				items.push(data.response.item);
+			}
 			return items;
 		}
 		
@@ -81,6 +89,9 @@ package net.projectschedule.service
 						}
 						else if(type == Calendar){
 							results.addItem(Calendar.fromObject(item));
+						}
+						else if(type == Dayoff){
+							results.addItem(Dayoff.fromObject(item));
 						}
 					}
 						

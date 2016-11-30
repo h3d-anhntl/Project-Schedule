@@ -1,17 +1,19 @@
 package net.projectschedule.service
 {
 	import mx.collections.ArrayCollection;
-	import mx.rpc.events.ResultEvent;
 	
-	import net.projectschedule.models.Employee;
+	import net.fproject.active.ActiveDataProvider;
+	import net.fproject.active.ActiveService;
+	import net.fproject.active.DbCriteria;
 	
 
-	public class EmployeeService extends ServiceBase
+	[RemoteObject(destination="schedule-server", modelClass="net.projectschedule.models.Employee", uri="/employees")]
+	public class EmployeeService extends ActiveService
 	{
 		public var employees:ArrayCollection = new ArrayCollection;
 		public function EmployeeService()
 		{ 
-			url = "http://localhost:9090/web/employees";
+			//url = "http://localhost:9090/web/employees";
 			super();
 		}
 		
@@ -24,24 +26,16 @@ package net.projectschedule.service
 			return _serviceCal;
 		}
 		
-		
-		
-		/*public function getAll(type:Class ,completeFuntionCallBack:Function = null):ArrayCollection
+		public function getEmployees():ActiveDataProvider
 		{
-			var results:ArrayCollection = new ArrayCollection;
-			this.send(
-				function(event:ResultEvent):void{
-					var temp:Array = convertXmlToArray(String(event.result));
-					for each (var item:Object in temp)
-						results.addItem(Employee.fromObject(item));
-						
-					if(completeFuntionCallBack != null ){
-						completeFuntionCallBack(event);
-					}
-				}
-			);
-			return results;
-		}*/
+			
+			var criteria:DbCriteria = new DbCriteria(
+				{
+					condition: "@findAllCondition"
+				});
+			
+			return this.createDataProvider(criteria) as ActiveDataProvider;
+		}
 		
 		
 	}

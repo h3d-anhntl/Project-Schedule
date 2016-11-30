@@ -9,6 +9,7 @@ package net.projectschedule.gui.view
 	import mx.rpc.events.ResultEvent;
 	
 	import spark.components.Button;
+	import spark.components.CheckBox;
 	import spark.components.ComboBox;
 	import spark.components.List;
 	import spark.components.supportClasses.SkinnableComponent;
@@ -23,16 +24,12 @@ package net.projectschedule.gui.view
 	
 	[EventHandling(event="creationComplete",handler="module_creationCompleteHandler")]
 	
-	public class TraCuuLichCaNhan extends SkinnableComponent
+	public class LichXinNghi extends SkinnableComponent
 	{
-		public function TraCuuLichCaNhan()
+		public function LichXinNghi()
 		{
 			Injector.inject(this);
 		}
-		
-		public var mor:ArrayCollection = new ArrayCollection([{"id":0,"selected":false},{"id":2,"selected":false},{"id":4,"selected":false},{"id":6,"selected":false},{"id":8,"selected":false},{"id":10,"selected":false}]);
-		public var aft:ArrayCollection = new ArrayCollection([{"id":1,"selected":false},{"id":3,"selected":false},{"id":5,"selected":false},{"id":7,"selected":false},{"id":9,"selected":false},{"id":11,"selected":false}]);
-		
 		
 		public function get employeeService():EmployeeService
 		{
@@ -46,7 +43,7 @@ package net.projectschedule.gui.view
 		
 		public function module_creationCompleteHandler(event:FlexEvent):void
 		{
-		/*	DataUtil.calendars = calendarService.getAll(Calendar,
+			/*DataUtil.calendars = calendarService.getAll(Calendar,
 				function(event:ResultEvent):void
 				{
 					DataUtil.employees = employeeService.getAll(Employee);
@@ -54,12 +51,14 @@ package net.projectschedule.gui.view
 			);*/
 			myCB.dataProvider = DataUtil.employees;
 			myCB.labelField = "name";
-			
-			listMon.dataProvider = mor;
-			listAft.dataProvider = aft;
 		}
 		
 		public function button1_clickHandler(event:MouseEvent):void
+		{
+			
+		}
+		
+		public function dangkyBtn_clickHandler(event:MouseEvent):void
 		{
 			
 		}
@@ -70,23 +69,16 @@ package net.projectschedule.gui.view
 		public var tuNgay:DateField;
 		
 		[SkinPart(required="true")]
-		public var denNgay:DateField;
-		
-		[SkinPart(required="true")]
-		//[PropertyBinding(itemRenderer="lisNameEmployeeItemRenderer")]
 		public var myCB:ComboBox
 		
 		[SkinPart(required="true")]
-		[EventHandling(event="click",handler="button1_clickHandler")]
-		public var traCuu:Button
+		[EventHandling(event="click",handler="dangkyBtn_clickHandler")]
+		public var dangkyBtn:Button;
 		
 		[SkinPart(required="true")]
-		[PropertyBinding(itemRenderer="listCheckBoxItemRender")]
-		public var listMon:List;
+		public var mon:CheckBox;
 		
 		[SkinPart(required="true")]
-		[PropertyBinding(itemRenderer="listCheckBoxItemRender")]
-		public var listAft:List;
-		
+		public var aft:CheckBox;
 	}
 }

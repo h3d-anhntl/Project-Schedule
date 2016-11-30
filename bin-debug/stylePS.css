@@ -64,3 +64,12 @@ view|TraCuuLichCaNhan
 {
 	skinClass:ClassReference("net.projectschedule.gui.skins.TraCuuLichCaNhanSkin")
 }
+
+view|LichXinNghi
+{
+	skinClass:ClassReference("net.projectschedule.gui.skins.LichXinNghiSkin")
+}
+
+s|List.noneBorder{
+	borderVisible:"false" 
+}
