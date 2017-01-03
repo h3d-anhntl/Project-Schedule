@@ -9,13 +9,11 @@ package net.projectschedule.gui.view
 	import mx.events.CalendarLayoutChangeEvent;
 	import mx.events.FlexEvent;
 	import mx.events.PropertyChangeEvent;
-	import mx.rpc.events.ResultEvent;
 	
 	import spark.components.Button;
 	import spark.components.List;
 	import spark.components.supportClasses.SkinnableComponent;
 	
-	import net.fproject.active.ActiveDataProvider;
 	import net.fproject.di.Injector;
 	import net.fproject.di.InstanceFactory;
 	import net.projectschedule.gui.components.ListNameEmployeeByDay;
@@ -96,10 +94,9 @@ package net.projectschedule.gui.view
 				selectedDay = int(DateField(event.currentTarget).selectedDate.getDay());
 				date = DateField(event.currentTarget).selectedDate;
 			}
-			dataMonDataProvider = employeeHandling.getEmployeeCalendarMonOfDay(selectedDay);
-			var d:String = date.getFullYear()+"-"+date.getMonth()+"-"+date.getDay();
-			dataAftDataProvider = employeeHandling.getEmployeeCalendarAftOfDay(selectedDay);
-			//dataEmployeeOffDataProvider = employeeHandling.getEmployeeDayOff(date);
+			dataMonDataProvider = ArrayCollection (employeeHandling.getEmployeeCalendarMonOfDay(selectedDay));
+			dataAftDataProvider = ArrayCollection(employeeHandling.getEmployeeCalendarAftOfDay(selectedDay));
+			dataEmployeeOffDataProvider = ArrayCollection(employeeHandling.getEmployeeDayOff(date));
 		}
 		
 		public var lisNameEmployeeItemRenderer:ClassFactory = new ClassFactory(ListNameEmployeeByDay);

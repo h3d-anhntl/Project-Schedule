@@ -26,25 +26,6 @@
 						 width="110" />
 				<s:ComboBox id="myCB" width="175" /> 
 			</s:HGroup>
-			<s:HGroup verticalAlign="middle" 
-					  gap="0"  height="30">
-				<s:Label text="Từ ngày:"  width="80"/>
-				<s:Form>
-					<s:FormItem>
-						<mx:DateField width="200"  
-									  id="tuNgay" />
-					</s:FormItem>
-				</s:Form>
-			</s:HGroup>
-			<s:HGroup verticalAlign="middle" 
-					  gap="0" height="30">
-				<s:Label text="Đến ngày:" width="80" />
-				<s:Form>
-					<s:FormItem>
-						<mx:DateField width="200" id="denNgay"/>
-					</s:FormItem>
-				</s:Form>
-			</s:HGroup>
 			<s:HGroup paddingLeft="110"
 					  paddingTop="10">
 				<s:Button label="Tra cứu"

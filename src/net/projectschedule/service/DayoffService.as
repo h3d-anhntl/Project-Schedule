@@ -4,7 +4,7 @@ package net.projectschedule.service
 	import net.fproject.active.ActiveService;
 	import net.fproject.active.DbCriteria;
 
-	[RemoteObject(destination="schedule-server", modelClass="net.projectschedule.models.Dayoff", uri="/employees")]
+	[RemoteObject(destination="schedule-server", modelClass="net.projectschedule.models.Dayoff", uri="/dayoffs")]
 	public class DayoffService extends ActiveService
 	{
 		private static var _serviceDayoff:DayoffService;

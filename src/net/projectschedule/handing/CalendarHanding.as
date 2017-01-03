@@ -2,7 +2,10 @@ package net.projectschedule.handing
 {
 	import mx.collections.ArrayCollection;
 	
+	import flashx.textLayout.elements.BreakElement;
+	
 	import net.projectschedule.models.Calendar;
+	import net.projectschedule.models.Employee;
 	import net.projectschedule.utils.DataUtil;
 
 	public class CalendarHanding
@@ -95,6 +98,21 @@ package net.projectschedule.handing
 		public function getCalendarAftOfWeek():ArrayCollection
 		{
 			return getCalendarOfWeek(aft);
+		}
+
+		public function getCalendarOfEmployee(emp:Employee):ArrayCollection
+		{
+			var calendars:ArrayCollection = DataUtil.calendars;
+			var schedule:ArrayCollection  = new ArrayCollection;
+			for each ( var cal:Calendar in calendars)
+			{
+				if(cal.employeeId == emp.id)
+				{
+					schedule = cal.scheduleConvertToArray(cal.schedule);
+					break;
+				}
+			}
+			return schedule;
 		}
 	}
 }

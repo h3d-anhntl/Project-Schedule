@@ -1,11 +1,8 @@
 package net.projectschedule.service
-{
-	import mx.collections.ArrayCollection;
-	
+{	
 	import net.fproject.active.ActiveDataProvider;
 	import net.fproject.active.ActiveService;
-	import net.fproject.active.DbCriteria;
-	
+	import net.fproject.active.DbCriteria;	
 
 	[RemoteObject(destination="schedule-server", modelClass="net.projectschedule.models.Calendar", uri="/calendars")]
 	public class CalendarService extends ActiveService

@@ -91,7 +91,7 @@ package net.projectschedule.service
 							results.addItem(Calendar.fromObject(item));
 						}
 						else if(type == Dayoff){
-							results.addItem(Dayoff.fromObject(item));
+							//results.addItem(Dayoff.fromObject(item));
 						}
 					}
 						

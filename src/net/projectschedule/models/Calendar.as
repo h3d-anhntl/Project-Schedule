@@ -1,9 +1,11 @@
 package net.projectschedule.models
 {
 	import mx.collections.ArrayCollection;
+	
+	import net.fproject.model.AbstractModel;
 
 	[RemoteClass(alias="FCalendar")]
-	public class Calendar
+	public class Calendar extends AbstractModel
 	{
 		[Bindable]
 		public var id:int;

@@ -1,7 +1,11 @@
 package net.projectschedule.models
 {
+	import mx.controls.DateField;
+	
+	import net.fproject.model.AbstractModel;
+
 	[RemoteClass(alias="FDayoff")]
-	public class Dayoff
+	public class Dayoff extends AbstractModel
 	{
 		[Bindable]
 		public var id:int;
@@ -20,18 +24,11 @@ package net.projectschedule.models
 		
 		[Bindable]
 		public var createtime:Date;
-		/*public static function fromObject(item:Object):Dayoff
+		
+		/*public function convertDate(day:Date):Date
 		{
-			var dayoff:Dayoff
-			
-			dayoff = new Dayoff();
-			dayoff.id = item.hasOwnProperty('id') ? item['id'] : "";
-			dayoff.day_off = item.hasOwnProperty('day_off') ? DateField.stringToDate(item['day_off'],"YYYY-MM-DD") : null;
-			dayoff.morning = item.hasOwnProperty('morning') ? item['morning'] : "";
-			dayoff.afternoon = item.hasOwnProperty('afternoon') ? item['afternoon'] : "";
-			dayoff.employeeId = item.hasOwnProperty('employeeId') ? item['employeeId'] : "";
-			dayoff.createtime = item.hasOwnProperty('createtime') ? DateField.stringToDate(item['createtime'],"YYYY-MM-DD") : null;
-			return dayoff;
+			var d:Date = DateField.stringToDate(day,"YYYY-MM-DD");
+			return d;
 		}*/
 	}
 }

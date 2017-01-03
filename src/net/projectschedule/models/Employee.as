@@ -2,8 +2,10 @@ package net.projectschedule.models
 {
 	import mx.controls.DateField;
 	
+	import net.fproject.model.AbstractModel;
+	
 	[RemoteClass(alias="FEmployee")]
-	public class Employee
+	public class Employee extends AbstractModel
 	{
 		[Bindable]
 		public var id:int;

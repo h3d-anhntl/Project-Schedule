@@ -1,19 +1,19 @@
 package net.projectschedule.gui.view
 {
+	import mx.binding.utils.ChangeWatcher;
 	import mx.collections.ArrayCollection;
-	//import mx.controls.DateField;
 	import mx.core.ClassFactory;
 	import mx.events.FlexEvent;
+	import mx.events.PropertyChangeEvent;
 	import mx.rpc.events.ResultEvent;
 	
 	import spark.components.DataGroup;
 	import spark.components.supportClasses.SkinnableComponent;
 	
 	import net.fproject.di.Injector;
+	import net.fproject.di.InstanceFactory;
 	import net.projectschedule.gui.components.ListLabel;
 	import net.projectschedule.handing.EmployeeHanding;
-	import net.projectschedule.models.Calendar;
-	import net.projectschedule.models.Employee;
 	import net.projectschedule.service.CalendarService;
 	import net.projectschedule.service.EmployeeService;
 	import net.projectschedule.utils.DataUtil;
@@ -39,41 +39,39 @@ package net.projectschedule.gui.view
 		
 		public function get employeeService():EmployeeService
 		{
-			return EmployeeService.getInstance();
+			return InstanceFactory.getInstance(EmployeeService);
 		}
 		
 		public function get calendarService():CalendarService
 		{
-			return CalendarService.getInstance();;
+			return InstanceFactory.getInstance(CalendarService);
 		}
 		
 		public function module_creationCompleteHandler(event:FlexEvent):void
 		{
-			var day:Date = new Date;
-			/*tuNgay.selectedDate = day;
-			denNgay.selectedDate = day;*/
-			/*DataUtil.calendars = calendarService.getAll(Calendar,
-				function(event:ResultEvent):void
+			var date:Date = new Date;
+			DataUtil.calendars = calendarService.getCalendars() as ArrayCollection;
+			ChangeWatcher.watch(DataUtil.calendars,'paginationResult',
+				function (e:PropertyChangeEvent):void
 				{
-					DataUtil.employees = employeeService.getAll(Employee,onGetAllEmployee_Complete);
+					DataUtil.employees = employeeService.getEmployees() as ArrayCollection;
+					ChangeWatcher.watch(DataUtil.employees,'paginationResult',
+						function(e:PropertyChangeEvent):void
+						{
+							dataMonDataProvider = ArrayCollection(employeeHandling.getEmployeeCalendarMonOfWeek());
+							dataAftDataProvider = ArrayCollection(employeeHandling.getEmployeeCalendarAftOfWeek());
+						}
+					)
 				}
-			);*/
+			)
 		}
 		
 		public function onGetAllEmployee_Complete(event:ResultEvent):void{
 			var date:Date = new Date;
 			dataMonDataProvider = employeeHandling.getEmployeeCalendarMonOfWeek();
 			dataAftDataProvider = employeeHandling.getEmployeeCalendarAftOfWeek();
-		}
-		
-		
+		}		
 		public var ListLabelItemRender:ClassFactory = new ClassFactory(ListLabel);
-		
-		/*[SkinPart(required="true")]
-		public var tuNgay:DateField;
-		
-		[SkinPart(required="true")]
-		public var denNgay:DateField;*/
 		
 		[SkinPart(required="true")]
 		[PropertyBinding(dataProvider="dataMonDataProvider@")]
